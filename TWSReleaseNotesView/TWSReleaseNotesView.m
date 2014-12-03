@@ -430,6 +430,10 @@ static const NSTimeInterval kTWSReleaseNotesViewTransitionDuration = 0.2f;
 
     // Dismiss release notes view
     [self dismiss];
+
+    if (self.closeDelegate && [self.closeDelegate respondsToSelector:@selector(releaseNotes:closeClicked:)]) {
+      [self.closeDelegate releaseNotes:self closeClicked:YES];
+    }
 }
 
 - (void)closeButtonTouchedDown:(id)sender

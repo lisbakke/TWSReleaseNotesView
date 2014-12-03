@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol TWSCloseViewDelegate;
+
 /**
  Use the `TWSReleaseNotesView` class to display a custom release notes view, to be shown when the app is opened for the first time after an update.
  
@@ -87,6 +89,7 @@
 /// The shadow offset for the close button. Default is `(0.0f, -1.0f)`.
 @property (assign, nonatomic) CGSize closeButtonShadowOffset;
 
+@property (weak, nonatomic) id<TWSCloseViewDelegate> closeDelegate;
 
 /** @name Creating the release notes view */
 
@@ -131,5 +134,12 @@
  @param containerView The container view in which the release notes view must be shown.
  */
 - (void)showInView:(UIView *)containerView;
+
+@end
+
+@protocol TWSCloseViewDelegate <NSObject>
+
+@optional
+- (void)releaseNotes:(TWSReleaseNotesView *)releaseView closeClicked:(BOOL)clicked;
 
 @end
